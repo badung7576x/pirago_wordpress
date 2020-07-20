@@ -578,10 +578,12 @@ class Portfolio extends Base_Widget {
 		usort( $terms, function( $a, $b ) {
 			return strcmp( $a->name, $b->name );
 		} );
-
+		
+		$curLang = pll_current_language();
+		$allTitle = $curLang == 'ja' ? '全部' : ($curLang == 'en' ? 'All' : 'Tất cả');
 		?>
 		<ul class="elementor-portfolio__filters">
-			<li class="elementor-portfolio__filter elementor-active" data-filter="__all"><?php echo __( 'All', 'elementor-pro' ); ?></li>
+			<li class="elementor-portfolio__filter elementor-active" data-filter="__all"><?php echo __( $allTitle, 'elementor-pro' ); ?></li>
 			<?php foreach ( $terms as $term ) { ?>
 				<li class="elementor-portfolio__filter" data-filter="<?php echo esc_attr( $term->term_id ); ?>"><?php echo $term->name; ?></li>
 			<?php } ?>
